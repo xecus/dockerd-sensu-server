@@ -1,0 +1,17 @@
+version: '2'
+services:
+  rabbitmq:
+    image: rabbitmq:3.6.9
+    ports:
+      - "35672:5672"
+  redis:
+    image: redis:3.0.7
+    ports:
+      - "36379:6379"
+  server:
+    build: .
+    ports:
+      - "33000:3000"
+    depends_on:
+      - rabbitmq
+      - redis
